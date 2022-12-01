@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import Title from "./components/Title";
 
 function App() {
   const [showEvents, setShowEvents] = useState(true);
@@ -15,8 +16,10 @@ function App() {
       })
     );
   };
+  const subtitle = "All the latest events in Marioland";
   return (
     <div className="App">
+      <Title title="Events on your area" subtitle={subtitle} />
       {showEvents && (
         <div>
           <button onClick={() => setShowEvents(false)}>hide events</button>
