@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h1>My Website</h1>
+    <div id="banner">
+        
+    </div>    
+
+    <footer>
+        <p>footer</p>
+    </footer>
+    <script type="text/babel">
+        const Banner= () => {
+            const title= "Welcome to my website!"
+            const subtitle= "React website"
+            const address= "https://www.netninja.dev"
+
+            /*const handleClick= (e) => {
+                console.log("you clicked me");
+                console.log("the site title is : ", title);
+                console.log(e);
+            };*/
+
+            return (
+                <div className="banner">
+                    <h2>{title.toUpperCase()}</h2>
+                    <p>{subtitle}</p>
+                    <p>Today's date is: {new Date().toDateString()}</p>
+                    <p>Random Number: {Math.random()* 100}</p>
+                    <a href={address}>Visite the Net Ninja site</a>
+                    <button onClick={(e)=> console.log(e)}>Click me</button>
+                </div>
+            );
+        }
+        const banner = document.getElementById('banner');
+        ReactDOM.createRoot(banner).render(<Banner/>);
+
+        // ReactDOM.render(<Banner/>, document.getElementById("banner"));
+    </script>
+</body>
+</html>
