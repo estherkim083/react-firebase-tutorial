@@ -44,7 +44,7 @@ function App() {
       </div>
       <button onClick={() => setShowModal(true)}>Show Modal</button>
       {showModal && (
-        <Modal handleClose={handleClose}>
+        <Modal handleClose={handleClose} isSalesModal={true}>
           <h2>10% Off Coupon code!</h2>
           <p>Use the code NINJA10 at the checkout.</p>
         </Modal>
