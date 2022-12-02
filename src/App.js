@@ -1,7 +1,10 @@
 import { useState } from "react";
 import Title from "./components/Title";
+import Modal from "./components/Modal";
+import EventList from "./components/EventList";
 
 function App() {
+  const [showModal, setShowModal] = useState(true);
   const [showEvents, setShowEvents] = useState(true);
   const [eventsList, setEventsList] = useState([
     { title: "m", id: 1 },
@@ -12,10 +15,14 @@ function App() {
   const handleClick = (id) => {
     setEventsList(
       eventsList.filter((item) => {
-        return id != item.id;
+        return id !== item.id;
       })
     );
   };
+  const handleClose = () => {
+    setShowModal(false);
+  };
+
   const subtitle = "All the latest events in Marioland";
   return (
     <div className="App">
@@ -31,16 +38,17 @@ function App() {
         </div>
       )}
       <div>
-        {showEvents &&
-          eventsList.map((item, index) => (
-            <div key={item.id}>
-              <h2>
-                {index}- {item.title}
-              </h2>
-              <button onClick={() => handleClick(item.id)}>delete</button>
-            </div>
-          ))}
+        {showEvents && (
+          <EventList eventsList={eventsList} handleClick={handleClick} />
+        )}
       </div>
+      <button onClick={() => setShowModal(true)}>Show Modal</button>
+      {showModal && (
+        <Modal handleClose={handleClose}>
+          <h2>10% Off Coupon code!</h2>
+          <p>Use the code NINJA10 at the checkout.</p>
+        </Modal>
+      )}
     </div>
   );
 }
