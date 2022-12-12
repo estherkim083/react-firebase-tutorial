@@ -1,37 +1,32 @@
 import "./App.css";
-import {
-  BrowserRouter,
-  Route,
-  Routes,
-  NavLink,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 // page components
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Article from "./pages/Article";
+import Home from "./pages/home/Home";
+import Create from "./pages/create/Create";
+import Search from "./pages/search/Search";
+import Recipe from "./pages/recipe/Recipe";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <nav>
-          <h1>My Articles</h1>
-          <NavLink exact to="/">
-            Home
-          </NavLink>
-          <NavLink to="/about">About</NavLink>
-          <NavLink to="/contact">Contact</NavLink>
-        </nav>
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/articles/:id" element={<Article />} />
-          <Route path="*" element={<Navigate replace to="/" />} />
-        </Routes>
+        <Navbar />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/create">
+            <Create />
+          </Route>
+          <Route path="/search">
+            <Search />
+          </Route>
+          <Route path="/recipes/:id">
+            <Recipe />
+          </Route>
+        </Switch>
       </BrowserRouter>
     </div>
   );
