@@ -2,7 +2,8 @@
 import "./Create.css";
 
 import { useEffect, useRef, useState } from "react";
-import { useFetch } from "../../hooks/useFetch";
+
+import { projectFirestore } from "../../firebase/config";
 // import { useHistory } from "react-router-dom";
 
 export default function Create() {
@@ -14,30 +15,21 @@ export default function Create() {
   const ingredientInput = useRef(null);
   // const history = useHistory(); // 작동안됨. 버전 문제인듯.
 
-  const { postData, data, error } = useFetch(
-    "http://localhost:8000/recipes",
-    "POST"
-  );
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    postData({
+    const doc = {
       title,
       ingredients,
       method,
       cookingTime: cookingTime + " minutes",
-    });
-    // 리디렉션: 홈화면으로..
-  };
-
-  // 리디렉션: 홈화면으로..
-  useEffect(() => {
-    if (data) {
-      // postData에 대한 response data가 있다면...
-      // history.push("/");
-      window.location.href = "/";
+    };
+    try {
+      await projectFirestore.collection("recipe").add(doc);
+      window.location.href = "/"; // 리디렉션: 홈화면으로..
+    } catch (err) {
+      console.log(err);
     }
-  }, [data]);
+  };
 
   const handleAdd = (e) => {
     e.preventDefault();
