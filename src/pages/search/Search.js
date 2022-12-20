@@ -2,7 +2,7 @@
 import "./Search.css";
 
 import { useLocation } from "react-router-dom";
-import { useFetch } from "../../hooks/useFetch";
+import { useCollection } from "../../hooks/useCollection";
 import RecipeList from "../../components/RecipeList";
 
 export default function Search() {
@@ -10,8 +10,8 @@ export default function Search() {
   const queryParams = new URLSearchParams(queryString);
   const query = queryParams.get("q");
 
-  const url = "http://localhost:8000/recipes?q=" + query;
-  const { error, isPending, data } = useFetch(url);
+  //const url = "http://localhost:8000/recipes?q=" + query;
+  const { data, error, isPending } = useCollection("recipe", query);
 
   return (
     <div>

@@ -1,12 +1,15 @@
 import "./Searchbar.css";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Searchbar() {
   const [term, setTerm] = useState("");
+  let navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    window.location.href = `/search?q=${term}`;
+    navigate(`/search?q=${term}`);
   };
   return (
     <div className="searchbar">

@@ -1,6 +1,6 @@
 import "./Navbar.css";
 import Searchbar from "./Searchbar";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useTheme } from "../hooks/useTheme";
 
 export default function Navbar() {
@@ -9,13 +9,13 @@ export default function Navbar() {
   return (
     <div className="navbar" style={{ background: color }}>
       <nav>
-        <a href="/" className="brand">
+        <Link to="/" className="brand">
           <h1>Cooking ninja</h1>
-        </a>
+        </Link>
         <Searchbar />
-        <a href="/create">
+        <Link to="/create">
           <h1>Create Recipe</h1>
-        </a>
+        </Link>
       </nav>
     </div>
   );

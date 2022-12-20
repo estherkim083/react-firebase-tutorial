@@ -3,10 +3,12 @@ import "./Create.css";
 
 import { useEffect, useRef, useState } from "react";
 
+import { useNavigate } from "react-router-dom";
 import { projectFirestore } from "../../firebase/config";
 // import { useHistory } from "react-router-dom";
 
 export default function Create() {
+  let navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [method, setMethod] = useState("");
   const [cookingTime, setCookingTime] = useState("");
@@ -25,7 +27,7 @@ export default function Create() {
     };
     try {
       await projectFirestore.collection("recipe").add(doc);
-      window.location.href = "/"; // 리디렉션: 홈화면으로..
+      navigate("/"); // 리디렉션: 홈화면으로..
     } catch (err) {
       console.log(err);
     }
